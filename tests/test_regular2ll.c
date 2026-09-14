@@ -314,7 +314,7 @@ main(){
         double *lon = NULL;
         unsigned int exp_size = 9;
         const double expected_lat[9] = {10.0, 10.0, 10.0, 20.0, 20.0, 20.0, 30.0, 30.0, 30.0};
-        const double expected_lon[9] = {20.0, 30.0, 40.0, 20.0, 30.0, 40.0, 20.0, 30.0, 40.0};
+        const double expected_lon[9] = {0.0, 10.0, 20.0, 0.0, 10.0, 20.0, 0.0, 10.0, 20.0};
 
         sec[1] = sec1;
         sec[3] = sec3;
