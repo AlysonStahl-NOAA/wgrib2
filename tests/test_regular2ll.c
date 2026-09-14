@@ -375,6 +375,81 @@ main(){
         free(lat);
         free(lon);
     }
+    printf("Test Case 6: Non-zero basic angle with negative w normalization.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+        unsigned int exp_size = 9;
+        const double expected_lat[9] = {10.0, 10.0, 10.0, 20.0, 20.0, 20.0, 30.0, 30.0, 30.0};
+        const double expected_lon[9] = {350.0, 0.0, 10.0, 350.0, 0.0, 10.0, 350.0, 0.0, 10.0};
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 9;
+        sec3[33] = 3;
+        sec3[37] = 3;
+        sec3[41] = 1;
+        sec3[43] = 15;
+        sec3[44] = 66;
+        sec3[45] = 64;
+        sec3[46] = 0;
+        sec3[47] = 152;
+        sec3[48] = 150;
+        sec3[49] = 128;
+        sec3[50] = 0;
+        sec3[51] = 152;
+        sec3[52] = 150;
+        sec3[53] = 128;
+        sec3[54] = 0;
+        sec3[55] = 1;
+        sec3[56] = 201;
+        sec3[57] = 195;
+        sec3[58] = 128;
+        sec3[59] = 1;
+        sec3[60] = 201;
+        sec3[61] = 195;
+        sec3[62] = 128;
+        sec3[63] = 0;
+        sec3[64] = 152;
+        sec3[65] = 150;
+        sec3[66] = 128;
+        sec3[67] = 0;
+        sec3[68] = 152;
+        sec3[69] = 150;
+        sec3[70] = 128;
+        sec3[71] = 208;
+
+        output_order = wesn;
+
+        if (regular2ll(sec, &lat, &lon) != 0 || lat == NULL || lon == NULL) {
+            printf("regular2ll() failed on valid input.\n");
+            free(lat);
+            free(lon);
+            return 6;
+        }
+
+        for (unsigned int i = 0; i < exp_size; i++) {
+            if (fabs(lat[i] - expected_lat[i]) > TOL ||
+                fabs(lon[i] - expected_lon[i]) > TOL) {
+                printf("regular2ll() produced an unexpected coordinate at index %u.\n", i);
+                free(lat);
+                free(lon);
+                return 6;
+            }
+        }
+
+        free(lat);
+        free(lon);
+    }
     printf("SUCCESS!\n");
     return 0;
 }
