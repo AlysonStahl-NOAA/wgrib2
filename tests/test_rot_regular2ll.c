@@ -16,14 +16,6 @@
 int rot_regular2ll(unsigned char **sec, double **lat, double **lon);
 
 extern enum output_order_type output_order;
-        
-static double lon_diff(double actual, double expected) {
-    double diff = fmod(actual - expected, 360.0);
-
-    if (diff < 0.0) diff += 360.0;
-    if (diff > 180.0) diff = 360.0 - diff;
-    return fabs(diff);
-}
 
 int
 main(){
@@ -83,6 +75,7 @@ main(){
 
         output_order = wesn;
 
+
         if (rot_regular2ll(sec, &lat, &lon) != 0 || lat == NULL || lon == NULL) {
             printf("rot_regular2ll() failed on valid input.\n");
             free(lat);
@@ -91,8 +84,12 @@ main(){
         }
 
         for (unsigned int i = 0; i < exp_size; i++) {
+            printf("lat[%u] = %f, lon[%u] = %f\n", i, lat[i], i, lon[i]);
+        }
+
+        for (unsigned int i = 0; i < exp_size; i++) {
             if (fabs(lat[i] - expected_lat[i]) > TOL ||
-                lon_diff(lon[i], expected_lon[i]) > TOL) {
+                fabs(lon[i] - expected_lon[i]) > TOL) {
                 printf("rot_regular2ll() produced an unexpected coordinate at index %u.\n", i);
                 free(lat);
                 free(lon);
@@ -171,7 +168,7 @@ main(){
 
         for (unsigned int i = 0; i < exp_size; i++) {
             if (fabs(lat[i] - expected_lat[i]) > TOL ||
-                lon_diff(lon[i], expected_lon[i]) > TOL) {
+                fabs(lon[i] - expected_lon[i]) > TOL) {
                 printf("rot_regular2ll() produced an unexpected coordinate at index %u.\n", i);
                 free(lat);
                 free(lon);
