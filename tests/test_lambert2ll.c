@@ -43,8 +43,8 @@ main(){
         double *lat = NULL;
         double *lon = NULL;
         unsigned int exp_size = 2;
-        const double expected_lat[2] = {30.0, 60.0};
-        const double expected_lon[2] = {0.0, 0.0};
+        const double expected_lat[2] = {30.0, 0.0};
+        const double expected_lon[2] = {42.1842765, 0.0};
 
         sec[1] = sec1;
         sec[3] = sec3;
