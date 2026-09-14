@@ -27,9 +27,9 @@ main(){
         unsigned char *sec[8] = {NULL};
         double *lat = NULL;
         double *lon = NULL;
-        unsigned int exp_size = 5;
-        const double expected_lat[5] = {10.0, 10.0, 10.0, 20.0, 20.0};
-        const double expected_lon[5] = {-10.0, 0.0, 10.0, -10.0, 0.0};
+        unsigned int exp_size = 6;
+        const double expected_lat[6] = {10.0, 10.0, 10.0, 20.0, 20.0, 20.0};
+        const double expected_lon[6] = {-10.0, 0.0, 10.0, -10.0, 0.0, 10.0};
 
         sec[1] = sec1;
         sec[3] = sec3;
