@@ -98,10 +98,6 @@ main(){
         }
 
         for (unsigned int i = 0; i < exp_size; i++) {
-            printf("lat[%u] = %.15f, lon[%u] = %.15f\n", i, lat[i], i, lon[i]);
-        }
-
-        for (unsigned int i = 0; i < exp_size; i++) {
             if (fabs(lat[i] - expected_lat[i]) > TOL ||
                 fabs(lon[i] - expected_lon[i]) > TOL) {
                 printf("rot_regular2ll() produced an unexpected coordinate at index %u.\n", i);
@@ -178,6 +174,10 @@ main(){
             free(lat);
             free(lon);
             return 2;
+        }
+
+        for (unsigned int i = 0; i < exp_size; i++) {
+            printf("lat[%u] = %.15f, lon[%u] = %.15f\n", i, lat[i], i, lon[i]);
         }
 
         for (unsigned int i = 0; i < exp_size; i++) {
