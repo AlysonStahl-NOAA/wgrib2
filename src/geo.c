@@ -461,7 +461,11 @@ int polar2ll(unsigned char **sec, double **llat, double **llon) {
  * @param llat Pointer to the latitude array.
  * @param llon Pointer to the longitude array.
  * 
- * @return 0 for success, error code otherwise.
+ * @return 
+ * - 0 :: Success
+ * - 1 :: nny < 1 or nnx < 1
+ * 
+ * Throws fatal_error() otherwise.
  * 
  * @author Karl Pfeiffer @date 2005-08-22
  */
@@ -485,7 +489,7 @@ int lambert2ll(unsigned char **sec, double **llat, double **llon) {
 
     if (nnx < 1 || nny < 1) {
         fprintf(stderr,"Sorry code does not handle variable nx/ny yet\n");
-        return 0;
+        return 1;
     }
 
     earth_radius = radius_earth(sec);
@@ -581,7 +585,12 @@ int lambert2ll(unsigned char **sec, double **llat, double **llon) {
  * @param lat Pointer to the latitude array.
  * @param lon Pointer to the longitude array.
  *
- * @return 0 for success, error code otherwise.
+ * @return
+ * - 0 :: Success
+ * - 1 :: nny < 1 or nnx < 1
+ * - 2 :: Non-zero mercator orientation angle
+ * 
+ * Throws fatal_error() otherwise.
  * 
  * @author Karl Pfeiffer @date 2005-08-22
  */
@@ -615,12 +624,12 @@ int mercator2ll(unsigned char **sec, double **lat, double **lon) {
     if (GDS_Mercator_ori_angle(gds) != 0.0) {
         fprintf(stderr,"cannot handle non-zero mercator orientation angle %f\n",
                 GDS_Mercator_ori_angle(gds));
-        return 0;
+        return 2;
     }
 
     if (nnx < 1 || nny < 1) {
         fprintf(stderr,"Sorry geo/mercator code does not handle variable nx/ny yet\n");
-        return 0;
+        return 1;
     }
 
     if ((*lat = (double *) malloc(((size_t) nnpnts) * sizeof(double))) == NULL) {

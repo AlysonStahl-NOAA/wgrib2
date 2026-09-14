@@ -86,15 +86,6 @@ main(){
     }
     printf("Test Case 2: South polar stereographic grid.\n");
     {
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the polar2ll() function. The intention of the input values selected
-         * is to the case where:
-         * if (GDS_Polar_sps(gds)) == True
-         * 
-         * Pay attention to the context of where this is executed.
-         * Please double check your work for any errors or undefined behavior. 
-         */
         unsigned char sec1[16] = {0};
         unsigned char sec3[65] = {0};
         unsigned char *sec[8] = {NULL};
@@ -164,15 +155,6 @@ main(){
     }
     printf("Test Case 3: North polar stereographic grid with negative y scanning.\n");
     {
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the polar2ll() function. The intention of the input values selected
-         * is to the case where:
-         * ifif (! (GDS_Scan_y(nscan))) == True
-         * 
-         * Pay attention to the context of where this is executed.
-         * Please double check your work for any errors or undefined behavior. 
-         */
         unsigned char sec1[16] = {0};
         unsigned char sec3[65] = {0};
         unsigned char *sec[8] = {NULL};
@@ -223,10 +205,6 @@ main(){
         }
 
         for (unsigned int i = 0; i < exp_size; i++) {
-            printf("lat[%u] = %.15f, lon[%u] = %.15f\n", i, lat[i], i, lon[i]);
-        }
-
-        for (unsigned int i = 0; i < exp_size; i++) {
             if (fabs(lat[i] - expected_lat[i]) > TOL ||
                 fabs(lon[i] - expected_lon[i]) > TOL) {
                 printf("polar2ll() produced an unexpected coordinate at index %u.\n", i);
@@ -241,15 +219,6 @@ main(){
     }
     printf("Test Case 4: North polar stereographic grid with negative x scanning.\n");
     {
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the polar2ll() function. The intention of the input values selected
-         * is to the case where:
-         * ifif (! (GDS_Scan_x(nscan))) == True
-         * 
-         * Pay attention to the context of where this is executed.
-         * Please double check your work for any errors or undefined behavior. 
-         */
         unsigned char sec1[16] = {0};
         unsigned char sec3[65] = {0};
         unsigned char *sec[8] = {NULL};
@@ -300,10 +269,6 @@ main(){
         }
 
         for (unsigned int i = 0; i < exp_size; i++) {
-            printf("lat[%u] = %.15f, lon[%u] = %.15f\n", i, lat[i], i, lon[i]);
-        }
-
-        for (unsigned int i = 0; i < exp_size; i++) {
             if (fabs(lat[i] - expected_lat[i]) > TOL ||
                 fabs(lon[i] - expected_lon[i]) > TOL) {
                 printf("polar2ll() produced an unexpected coordinate at index %u.\n", i);
@@ -349,15 +314,6 @@ main(){
     printf("Test Case 6: Handling nny < 1. Should return 1.\n");
     {
         int ret;
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the polar2ll() function. The intention of the input values selected
-         * is to the case where:
-         * nny < 1
-         * 
-         * Pay attention to the context of where this is executed.
-         * Please double check your work for any errors or undefined behavior. 
-         */
         unsigned char sec1[16] = {0};
         unsigned char sec3[65] = {0};
         unsigned char *sec[8] = {NULL};
