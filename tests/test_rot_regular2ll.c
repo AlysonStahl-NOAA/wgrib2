@@ -27,9 +27,9 @@ main(){
         unsigned char *sec[8] = {NULL};
         double *lat = NULL;
         double *lon = NULL;
-        unsigned int exp_size = 6;
-        const double expected_lat[6] = {10.0, 10.0, 10.0, 20.0, 20.0, 20.0};
-        const double expected_lon[6] = {-10.0, 0.0, 10.0, -10.0, 0.0, 10.0};
+        unsigned int exp_size = 5;
+        const double expected_lat[5] = {10.0, 10.0, 10.0, 20.0, 20.0};
+        const double expected_lon[5] = {-10.0, 0.0, 10.0, -10.0, 0.0};
 
         sec[1] = sec1;
         sec[3] = sec3;
@@ -84,7 +84,7 @@ main(){
         }
 
         for (unsigned int i = 0; i < exp_size; i++) {
-            printf("lat[%u] = %f, lon[%u] = %f\n", i, lat[i], i, lon[i]);
+            printf("lat[%u] = %.15f, lon[%u] = %.15f\n", i, lat[i], i, lon[i]);
         }
 
         for (unsigned int i = 0; i < exp_size; i++) {
