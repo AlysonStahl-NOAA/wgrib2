@@ -345,7 +345,11 @@ int rot_regular2ll(unsigned char **sec, double **lat, double **lon) {
  * @param llat Pointer to the latitude array.
  * @param llon Pointer to the longitude array.
  *
- * @return 0 for success, error code otherwise.
+ * @return 
+ * - 0 :: Success
+ * - 1 :: nny < 1 or nnx < 1
+ * 
+ * Throws fatal_error() otherwise.
  * 
  * @author Karl Pfeiffer @date 2005-08-22
  */
@@ -368,7 +372,7 @@ int polar2ll(unsigned char **sec, double **llat, double **llon) {
 
     if (nnx < 1 || nny < 1) {
         fprintf(stderr,"Sorry code does not handle variable nx/ny yet\n");
-        return 0;
+        return 1;
     }
     nx = nnx;		/* size_t, multiplications will not overflow */
 
