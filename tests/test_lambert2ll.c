@@ -10,9 +10,16 @@
 #include <math.h>
 #include "wgrib2.h"
 
+#define TOL 1e-6
+
+extern enum output_order_type output_order;
+
 int
 main(){
+    printf("Testing lambert2ll()...\n");
+    {
 
+    }
     printf("SUCCESS!\n");
     return 0;
 }
