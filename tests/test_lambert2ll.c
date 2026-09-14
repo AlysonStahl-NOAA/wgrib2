@@ -94,7 +94,7 @@ main(){
         free(lat);
         free(lon);
     }
-    printf("Test Case 2: Lambert conformal grid with equal secant latitudes.\n");
+    printf("Test Case 2: Lambert conformal grid with different secant latitudes.\n");
     {
         unsigned char sec1[16] = {0};
         unsigned char sec3[81] = {0};
@@ -139,10 +139,10 @@ main(){
         sec3[66] = 201;
         sec3[67] = 195;
         sec3[68] = 128;
-        sec3[69] = 1;
-        sec3[70] = 201;
-        sec3[71] = 195;
-        sec3[72] = 128;
+        sec3[69] = 3;
+        sec3[70] = 147;
+        sec3[71] = 135;
+        sec3[72] = 0;
 
         output_order = wesn;
 
