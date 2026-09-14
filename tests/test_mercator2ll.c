@@ -351,7 +351,7 @@ main(){
         }
 
     }
-    printf("Test Case 7: Fatal error case where lon1 >= 360.\n");
+    printf("Test Case 7: Fatal error case where lon1 > 360.\n");
     {
         unsigned char sec1[16] = {0};
         unsigned char sec3[72] = {0};
@@ -377,14 +377,15 @@ main(){
         sec3[42] = 21;
         sec3[43] = 117;
         sec3[44] = 42;
+        sec3[45] = 1;
         
         if (setjmp(fatal_err) == 0) {
             mercator2ll(sec, &lat, &lon);
-            printf("mercator2ll() failed to trigger fatal_error for lon >= 360.\n");
+            printf("mercator2ll() failed to trigger fatal_error for lon > 360.\n");
             return 7;
         }
     }
-    printf("Test Case 8: Fatal error case where lon2 >= 360.\n");
+    printf("Test Case 8: Fatal error case where lon2 > 360.\n");
     {
         unsigned char sec1[16] = {0};
         unsigned char sec3[72] = {0};
@@ -410,10 +411,11 @@ main(){
         sec3[55] = 21;
         sec3[56] = 117;
         sec3[57] = 42;
+        sec3[58] = 1;
 
         if (setjmp(fatal_err) == 0) {
             mercator2ll(sec, &lat, &lon);
-            printf("mercator2ll() failed to trigger fatal_error for lon >= 360.\n");
+            printf("mercator2ll() failed to trigger fatal_error for lon > 360.\n");
             return 8;
         }
     }
