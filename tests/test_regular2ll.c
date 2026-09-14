@@ -10,12 +10,14 @@
 #include <string.h>
 #include <math.h>
 #include "wgrib2.h"
+#include <setjmp.h>
 
 #define TOL 1e-6
 
 int regular2ll(unsigned char **sec, double **lat, double **lon);
 
 extern enum output_order_type output_order;
+extern jmp_buf fatal_err;
 
 int
 main(){
@@ -449,6 +451,71 @@ main(){
 
         free(lat);
         free(lon);
+    }
+    printf("Test Case 7: Handling nny < 1. Should return 1.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+        int ret;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 0;
+
+        ret = regular2ll(sec, &lat, &lon);
+        if (ret != 1) {
+            printf("regular2ll() returned %d for nny < 1. Expected 1.\n", ret);
+            if (lat) free(lat);
+            if (lon) free(lon);
+            return 7;
+        }
+
+    }
+    printf("Test Case 8: Fatal error case where lon < 0.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[41] = 255;
+        sec3[42] = 255;
+        sec3[43] = 255;
+        sec3[44] = 255;
+        sec3[46] = 0;
+        sec3[47] = 152;
+        sec3[48] = 150;
+        sec3[49] = 128;
+        sec3[50] = 0;
+        sec3[51] = 15;
+        sec3[52] = 66;
+        sec3[53] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for lon < 0.\n");
+        }
     }
     printf("SUCCESS!\n");
     return 0;

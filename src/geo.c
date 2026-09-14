@@ -89,7 +89,11 @@ static double todegrees(double x) { return x * (180.0/M_PI); }
  * @param lat Pointer to the latitude array.
  * @param lon Pointer to the longitude array.
  * 
- * @return 0 for success, error code otherwise.
+ * @return
+ * - 0 :: Success
+ * - 1 :: nny < 1
+ * 
+ * Throws fatal_error() otherwise.
  * 
  * @author Karl Pfeiffer @date 2005-08-22
  */
@@ -111,7 +115,7 @@ int regular2ll(unsigned char **sec, double **lat, double **lon) {
 
     if (nny < 1) {
         fprintf(stderr,"Sorry code does not handle variable ny yet\n");
-        return 0;
+        return 1;
     }
 
     if ((*lat = (double *) malloc(((size_t) nnpnts) * sizeof(double))) == NULL) {
