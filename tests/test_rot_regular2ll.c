@@ -20,7 +20,7 @@ extern enum output_order_type output_order;
 int
 main(){
     printf("Testing rot_regular2ll()...\n");
-    printf("Test Case 1: Rotated lat-lon grid with WESN output order.\n");
+    printf("Test Case 1: Typical case of rotated lat-lon grid.\n");
     {
         unsigned char sec1[16] = {0};
         unsigned char sec3[84] = {0};

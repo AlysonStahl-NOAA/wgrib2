@@ -871,7 +871,7 @@ double *gauss2lats(int nlat, double *ylat) {
  * @param llat Pointer to the latitude array.
  * @param llon Pointer to the longitude array.
  * 
- * @return 0 for success, error code otherwise.
+ * @return 0 for success, throws fatal_error() otherwise.
  * 
  * @author Karl Pfeiffer @date 2005-08-22
  */

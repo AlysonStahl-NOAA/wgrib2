@@ -19,20 +19,8 @@ extern enum output_order_type output_order;
 int
 main(){
     printf("Testing gauss2lats()...\n");
-    /**
-     * TODO: Replace the ??? in the print statement below with a brief 
-     * description of the test case.
-     */
     printf("Test Case 1: Gaussian latitude grid with odd number of points.\n");
     {
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the gauss2lats() function. The intention of the input values selected
-         * is to execute the "happy path" of the routine successfully. The values 
-         * chosen should reflect typical, valid input values for the function and should
-         * also result in as many "branches" of the code being executed as possible.
-         * Please double check any expected values.
-         */
         int nlat = 5;
         double ylat[5];
         double *ret;
@@ -63,7 +51,6 @@ main(){
                 return 1;
             }
         }
-
     }
     printf("SUCCESS!\n");
     return 0;

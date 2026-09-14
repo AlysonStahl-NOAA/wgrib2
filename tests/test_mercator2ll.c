@@ -16,7 +16,6 @@
 
 int mercator2ll(unsigned char **sec, double **lat, double **lon);
 
-extern enum output_order_type output_order;
 extern jmp_buf fatal_err;
 
 int
@@ -79,8 +78,6 @@ main(){
         sec3[43] = 49;
         sec3[44] = 45;
         sec3[45] = 0;
-
-        output_order = wesn;
 
         if (mercator2ll(sec, &lat, &lon) != 0 || lat == NULL || lon == NULL) {
             printf("mercator2ll() failed on valid input.\n");
@@ -160,8 +157,6 @@ main(){
         sec3[70] = 153;
         sec3[71] = 45;
 
-        output_order = wesn;
-
         if (mercator2ll(sec, &lat, &lon) != 0 || lat == NULL || lon == NULL) {
             printf("mercator2ll() failed on valid input.\n");
             free(lat);
@@ -239,8 +234,6 @@ main(){
         sec3[69] = 61;
         sec3[70] = 153;
         sec3[71] = 45;
-
-        output_order = wesn;
       
         if (mercator2ll(sec, &lat, &lon) != 0 || lat == NULL || lon == NULL) {
             printf("mercator2ll() failed on valid input.\n");

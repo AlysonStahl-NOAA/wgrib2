@@ -15,8 +15,6 @@
 
 int polar2ll(unsigned char **sec, double **lat, double **lon);
 
-extern enum output_order_type output_order;
-
 int
 main(){
     printf("Testing polar2ll()...\n");
@@ -61,8 +59,6 @@ main(){
         sec3[61] = 240;
         sec3[62] = 216;
         sec3[64] = 64;
-
-        output_order = wesn;
 
         if (polar2ll(sec, &lat, &lon) != 0 || lat == NULL || lon == NULL) {
             printf("polar2ll() failed on valid input.\n");
@@ -131,8 +127,6 @@ main(){
         sec3[63] = 128;
         sec3[64] = 64;
 
-        output_order = wesn;
-
         if (polar2ll(sec, &lat, &lon) != 0 || lat == NULL || lon == NULL) {
             printf("polar2ll() failed on valid input.\n");
             free(lat);
@@ -195,8 +189,6 @@ main(){
         sec3[62] = 216;
         sec3[64] = 0;
 
-        output_order = wesn;
-
         if (polar2ll(sec, &lat, &lon) != 0 || lat == NULL || lon == NULL) {
             printf("polar2ll() failed on valid input.\n");
             free(lat);
@@ -258,8 +250,6 @@ main(){
         sec3[61] = 240;
         sec3[62] = 216;
         sec3[64] = 192;
-
-        output_order = wesn;
 
         if (polar2ll(sec, &lat, &lon) != 0 || lat == NULL || lon == NULL) {
             printf("polar2ll() failed on valid input.\n");

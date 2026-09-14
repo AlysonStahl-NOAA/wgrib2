@@ -23,7 +23,7 @@ int
 main(){
 
     printf("Testing regular2ll()...\n");
-    printf("Test Case 1: Grid Template 0 and WESN output order.\n");
+    printf("Test Case 1: Typical case of regular lat-lon grid.\n");
     {
         unsigned char sec1[16] = {0};
         unsigned char sec3[72] = {0};
@@ -92,7 +92,7 @@ main(){
         free(lat);
         free(lon);
     }
-    printf("Test Case 2: Thinned quasi-regular grid with WESN-oriented rows.\n");
+    printf("Test Case 2: Thinned quasi-regular grid.\n");
     {
         unsigned char sec1[16] = {0};
         unsigned char sec3[74] = {0};
