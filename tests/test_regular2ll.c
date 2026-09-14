@@ -529,14 +529,6 @@ main(){
         sec[1] = sec1;
         sec[3] = sec3;
 
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the regular2ll() function. The intention of the input values selected
-         * is to trigger the fatal error where:
-         * if (lon1 < 0.0 || lon2 < 0.0) fatal_error("BAD grid definition lon < zero","");
-         * For lon2 < 0.
-         * Because this is an "error" case, keep the inputs simple where possible.
-         */
         sec1[3] = 16;
         sec1[4] = 1;
 
@@ -571,15 +563,6 @@ main(){
         sec[1] = sec1;
         sec[3] = sec3;
 
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the regular2ll() function. The intention of the input values selected
-         * is to trigger the fatal error where:
-         * if (lon1 > 360.0 || lon2 > 360.0) fatal_error("BAD grid definition lon >= 360","");
-         * 
-         * For lon1 >= 360.
-         * Because this is an "error" case, keep the inputs simple where possible.
-         */
         sec1[3] = 16;
         sec1[4] = 1;
 
@@ -612,15 +595,6 @@ main(){
         sec[1] = sec1;
         sec[3] = sec3;
 
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the regular2ll() function. The intention of the input values selected
-         * is to trigger the fatal error where:
-         * if (lon1 > 360.0 || lon2 > 360.0) fatal_error("BAD grid definition lon >= 360","");
-         * 
-         * For lon2 >= 360.
-         * Because this is an "error" case, keep the inputs simple where possible.
-         */
         sec1[3] = 16;
         sec1[4] = 1;
 
@@ -653,15 +627,6 @@ main(){
         sec[1] = sec1;
         sec[3] = sec3;
 
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the regular2ll() function. The intention of the input values selected
-         * is to trigger the fatal error where:
-         * if (lat1 < -90.0 || lat2 < -90.0 || lat1 > 90.0 || lat2 > 90.0) fatal_error("BAD grid definition lat","");
-         * 
-         * For lat1 < -90.
-         * Because this is an "error" case, keep the inputs simple where possible.
-         */
         sec1[3] = 16;
         sec1[4] = 1;
 
@@ -694,15 +659,6 @@ main(){
         sec[1] = sec1;
         sec[3] = sec3;
 
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the regular2ll() function. The intention of the input values selected
-         * is to trigger the fatal error where:
-         * if (lat1 < -90.0 || lat2 < -90.0 || lat1 > 90.0 || lat2 > 90.0) fatal_error("BAD grid definition lat","");
-         * 
-         * For lat2 < -90.
-         * Because this is an "error" case, keep the inputs simple where possible.
-         */
         sec1[3] = 16;
         sec1[4] = 1;
 
@@ -735,15 +691,6 @@ main(){
         sec[1] = sec1;
         sec[3] = sec3;
 
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the regular2ll() function. The intention of the input values selected
-         * is to trigger the fatal error where:
-         * if (lat1 < -90.0 || lat2 < -90.0 || lat1 > 90.0 || lat2 > 90.0) fatal_error("BAD grid definition lat","");
-         * 
-         * For lat1 > 90.
-         * Because this is an "error" case, keep the inputs simple where possible.
-         */
         sec1[3] = 16;
         sec1[4] = 1;
 
@@ -776,15 +723,6 @@ main(){
         sec[1] = sec1;
         sec[3] = sec3;
 
-        /**
-         * TODO: Replace the ??? below with code that sets up the input and output
-         * for the regular2ll() function. The intention of the input values selected
-         * is to trigger the fatal error where:
-         * if (lat1 < -90.0 || lat2 < -90.0 || lat1 > 90.0 || lat2 > 90.0) fatal_error("BAD grid definition lat","");
-         * 
-         * For lat2 > 90.
-         * Because this is an "error" case, keep the inputs simple where possible.
-         */
         sec1[3] = 16;
         sec1[4] = 1;
 
@@ -806,6 +744,270 @@ main(){
             return 15;
         }
     }
+    printf("Test Case 16: Fatal error due to inconsistent scan order.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         * if (s > n) fatal_error("lat-lon grid: lat1 and lat2 inconsistent with scan order, bad grid definition","");
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 2;
+        sec3[33] = 1;
+        sec3[37] = 2;
+        sec3[46] = 1;
+        sec3[47] = 49;
+        sec3[48] = 45;
+        sec3[49] = 0;
+        sec3[55] = 0;
+        sec3[56] = 152;
+        sec3[57] = 150;
+        sec3[58] = 128;
+        sec3[71] = 64;
+
+        output_order = wesn;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for inconsistent scan order.\n");
+            return 16;
+        }
+    }
+    printf("Test Case 17: Fatal error due to inconsistent dlat.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         *  if (nny > 1) {
+         *      dy = (n - s) / (nny - 1);
+         *      if (nres & 16) {
+         *          if (fabs(dy - dlat) > 0.001) fatal_error("lat-lon grid: dlat is inconsistent, bad grid definition","");
+         *      }
+         *  }
+         * In other words, nny > 1, nres & 16 == True and fabs(dy - dlat) > 0.001.
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 2;
+        sec3[33] = 1;
+        sec3[37] = 2;
+        sec3[46] = 0;
+        sec3[47] = 152;
+        sec3[48] = 150;
+        sec3[49] = 128;
+        sec3[54] = 16;
+        sec3[55] = 1;
+        sec3[56] = 49;
+        sec3[57] = 45;
+        sec3[58] = 0;
+        sec3[67] = 0;
+        sec3[68] = 76;
+        sec3[69] = 75;
+        sec3[70] = 64;
+        sec3[71] = 64;
+
+        output_order = wesn;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for inconsistent dlat.\n");
+            return 17;
+        }
+    }
+    printf("Test Case 18: Fatal error due to ambiguous grid definition.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         *  if ( GDS_Scan_row_rev(nscan) && (nny % 2 == 0) && ((nres & 32) == 0) ) {
+         *      fatal_error("grib grid definition ambiguity","");
+         *  }
+         * 
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 2;
+        sec3[33] = 1;
+        sec3[37] = 2;
+        sec3[46] = 0;
+        sec3[47] = 152;
+        sec3[48] = 150;
+        sec3[49] = 128;
+        sec3[54] = 16;
+        sec3[55] = 1;
+        sec3[56] = 49;
+        sec3[57] = 45;
+        sec3[58] = 0;
+        sec3[67] = 0;
+        sec3[68] = 152;
+        sec3[69] = 150;
+        sec3[70] = 128;
+        sec3[71] = 80;
+
+        output_order = wesn;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for ambiguous grid definition.\n");
+            return 18;
+        }
+    }
+    printf("Test Case 19: Fatal error due to stagger problem.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         *  if (stagger(sec, nnpnts,llon,llat)) fatal_error("geo: stagger problem","");
+         * 
+         * Note that this if statement occurs within the if statement if (nnx > 0 && nny > 0) 
+         * == True (non-thinned, potentially staggered grid). Pay attention to the full context
+         * of the code where this if statement is located.
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[46] = 0;
+        sec3[47] = 152;
+        sec3[48] = 150;
+        sec3[49] = 128;
+        sec3[55] = 0;
+        sec3[56] = 152;
+        sec3[57] = 150;
+        sec3[58] = 128;
+        sec3[71] = 64;
+
+        output_order = raw;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for stagger problem.\n");
+            return 19;
+        }
+    }
+    printf("Test Case 20: Fatal error due to inconsistent dlon.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         * 
+         * if (nnx > 1) {
+         *   dx = (e-w) / (nnx - 1);
+         *   dx = fabs(dx);
+         *   if (nres & 32) { 
+         *       if (fabs(dx - fabs(dlon)) > 0.001) fatal_error("lat-lon grid: dlon is inconsistent, bad grid definition","");
+         *   }
+         * }
+         * 
+         * Note that this if statement occurs within the if statement if (nnx > 0 && nny > 0) 
+         * == True (non-thinned, potentially staggered grid). Pay attention to the full context
+         * of the code where this if statement is located.
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 2;
+        sec3[33] = 2;
+        sec3[37] = 1;
+        sec3[46] = 0;
+        sec3[47] = 152;
+        sec3[48] = 150;
+        sec3[49] = 128;
+        sec3[54] = 32;
+        sec3[55] = 0;
+        sec3[56] = 152;
+        sec3[57] = 150;
+        sec3[58] = 128;
+        sec3[59] = 0;
+        sec3[60] = 152;
+        sec3[61] = 150;
+        sec3[62] = 128;
+        sec3[63] = 0;
+        sec3[64] = 76;
+        sec3[65] = 75;
+        sec3[66] = 64;
+        sec3[71] = 64;
+
+        output_order = wesn;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for inconsistent dlon.\n");
+            return 20;
+        }
+    }
     printf("SUCCESS!\n");
     return 0;
 }
+
