@@ -480,7 +480,7 @@ main(){
         }
 
     }
-    printf("Test Case 8: Fatal error case where lon < 0.\n");
+    printf("Test Case 8: Fatal error case where lon1 < 0.\n");
     {
         unsigned char sec1[16] = {0};
         unsigned char sec3[72] = {0};
@@ -515,6 +515,295 @@ main(){
         if (setjmp(fatal_err) == 0) {
             regular2ll(sec, &lat, &lon);
             printf("regular2ll() failed to trigger fatal_error for lon < 0.\n");
+            return 8;
+        }
+    }
+    printf("Test Case 9: Fatal error case where lon2 < 0.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         * if (lon1 < 0.0 || lon2 < 0.0) fatal_error("BAD grid definition lon < zero","");
+         * For lon2 < 0.
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[41] = 255;
+        sec3[42] = 255;
+        sec3[43] = 255;
+        sec3[44] = 255;
+        sec3[59] = 0;
+        sec3[60] = 0;
+        sec3[61] = 0;
+        sec3[62] = 1;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for lon < 0.\n");
+            return 9;
+        }
+    }
+    printf("Test Case 10: Fatal error case where lon1 >= 360.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         * if (lon1 > 360.0 || lon2 > 360.0) fatal_error("BAD grid definition lon >= 360","");
+         * 
+         * For lon1 >= 360.
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[41] = 0;
+        sec3[44] = 1;
+        sec3[50] = 0;
+        sec3[51] = 0;
+        sec3[52] = 1;
+        sec3[53] = 105;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for lon >= 360.\n");
+            return 10;
+        }
+    }
+    printf("Test Case 11: Fatal error case where lon2 >= 360.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         * if (lon1 > 360.0 || lon2 > 360.0) fatal_error("BAD grid definition lon >= 360","");
+         * 
+         * For lon2 >= 360.
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[41] = 0;
+        sec3[44] = 1;
+        sec3[59] = 0;
+        sec3[60] = 0;
+        sec3[61] = 1;
+        sec3[62] = 105;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for lon >= 360.\n");
+            return 11;
+        }
+    }
+    printf("Test Case 12: Fatal error case where lat1 < -90.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         * if (lat1 < -90.0 || lat2 < -90.0 || lat1 > 90.0 || lat2 > 90.0) fatal_error("BAD grid definition lat","");
+         * 
+         * For lat1 < -90.
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[41] = 0;
+        sec3[44] = 1;
+        sec3[46] = 255;
+        sec3[47] = 255;
+        sec3[48] = 255;
+        sec3[49] = 165;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for lat < -90.\n");
+            return 12;
+        }
+    }
+    printf("Test Case 13: Fatal error case where lat2 < -90.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         * if (lat1 < -90.0 || lat2 < -90.0 || lat1 > 90.0 || lat2 > 90.0) fatal_error("BAD grid definition lat","");
+         * 
+         * For lat2 < -90.
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[41] = 0;
+        sec3[44] = 1;
+        sec3[55] = 255;
+        sec3[56] = 255;
+        sec3[57] = 255;
+        sec3[58] = 165;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for lat < -90.\n");
+            return 13;
+        }
+    }
+    printf("Test Case 14: Fatal error case where lat1 > 90.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         * if (lat1 < -90.0 || lat2 < -90.0 || lat1 > 90.0 || lat2 > 90.0) fatal_error("BAD grid definition lat","");
+         * 
+         * For lat1 > 90.
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[41] = 0;
+        sec3[44] = 1;
+        sec3[46] = 0;
+        sec3[47] = 0;
+        sec3[48] = 0;
+        sec3[49] = 91;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for lat > 90.\n");
+            return 14;
+        }
+    }
+    printf("Test Case 15: Fatal error case where lat2 > 90.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *lat = NULL;
+        double *lon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        /**
+         * TODO: Replace the ??? below with code that sets up the input and output
+         * for the regular2ll() function. The intention of the input values selected
+         * is to trigger the fatal error where:
+         * if (lat1 < -90.0 || lat2 < -90.0 || lat1 > 90.0 || lat2 > 90.0) fatal_error("BAD grid definition lat","");
+         * 
+         * For lat2 > 90.
+         * Because this is an "error" case, keep the inputs simple where possible.
+         */
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[41] = 0;
+        sec3[44] = 1;
+        sec3[55] = 0;
+        sec3[56] = 0;
+        sec3[57] = 0;
+        sec3[58] = 91;
+
+        if (setjmp(fatal_err) == 0) {
+            regular2ll(sec, &lat, &lon);
+            printf("regular2ll() failed to trigger fatal_error for lat > 90.\n");
+            return 15;
         }
     }
     printf("SUCCESS!\n");
