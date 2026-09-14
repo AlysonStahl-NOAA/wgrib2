@@ -590,10 +590,10 @@ main(){
         sec3[37] = 1;
         sec3[41] = 0;
         sec3[44] = 1;
-        sec3[50] = 0;
-        sec3[51] = 0;
-        sec3[52] = 1;
-        sec3[53] = 105;
+        sec3[50] = 21;
+        sec3[51] = 117;
+        sec3[52] = 42;
+        sec3[53] = 1;
 
         if (setjmp(fatal_err) == 0) {
             regular2ll(sec, &lat, &lon);
@@ -631,10 +631,10 @@ main(){
         sec3[37] = 1;
         sec3[41] = 0;
         sec3[44] = 1;
-        sec3[59] = 0;
-        sec3[60] = 0;
-        sec3[61] = 1;
-        sec3[62] = 105;
+        sec3[59] = 21;
+        sec3[60] = 117;
+        sec3[61] = 42;
+        sec3[62] = 1;
 
         if (setjmp(fatal_err) == 0) {
             regular2ll(sec, &lat, &lon);
@@ -672,10 +672,10 @@ main(){
         sec3[37] = 1;
         sec3[41] = 0;
         sec3[44] = 1;
-        sec3[46] = 255;
-        sec3[47] = 255;
-        sec3[48] = 255;
-        sec3[49] = 165;
+        sec3[46] = 250;
+        sec3[47] = 162;
+        sec3[48] = 181;
+        sec3[49] = 127;
 
         if (setjmp(fatal_err) == 0) {
             regular2ll(sec, &lat, &lon);
@@ -713,10 +713,10 @@ main(){
         sec3[37] = 1;
         sec3[41] = 0;
         sec3[44] = 1;
-        sec3[55] = 255;
-        sec3[56] = 255;
-        sec3[57] = 255;
-        sec3[58] = 165;
+        sec3[55] = 250;
+        sec3[56] = 162;
+        sec3[57] = 181;
+        sec3[58] = 127;
 
         if (setjmp(fatal_err) == 0) {
             regular2ll(sec, &lat, &lon);
@@ -754,10 +754,10 @@ main(){
         sec3[37] = 1;
         sec3[41] = 0;
         sec3[44] = 1;
-        sec3[46] = 0;
-        sec3[47] = 0;
-        sec3[48] = 0;
-        sec3[49] = 91;
+        sec3[46] = 5;
+        sec3[47] = 93;
+        sec3[48] = 74;
+        sec3[49] = 129;
 
         if (setjmp(fatal_err) == 0) {
             regular2ll(sec, &lat, &lon);
@@ -795,10 +795,10 @@ main(){
         sec3[37] = 1;
         sec3[41] = 0;
         sec3[44] = 1;
-        sec3[55] = 0;
-        sec3[56] = 0;
-        sec3[57] = 0;
-        sec3[58] = 91;
+        sec3[55] = 5;
+        sec3[56] = 93;
+        sec3[57] = 74;
+        sec3[58] = 129;
 
         if (setjmp(fatal_err) == 0) {
             regular2ll(sec, &lat, &lon);
