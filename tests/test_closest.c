@@ -370,8 +370,6 @@ main(){
             free(lat);
             free(lon);
             return 5;
-        } else {
-            printf("closest_init() succeeded for valid input.\n");
         }
 
         idx = closest(sec, plat, plon);
@@ -433,6 +431,112 @@ main(){
             free(lat);
             free(lon);
             return 6;
+        }
+
+        free(lat);
+        free(lon);
+    }
+    printf("Test Case 7: Brute-force closest-point lookup skips invalid longitude.\n");
+    {
+        unsigned char sec3[14] = {0};
+        unsigned char *sec[8] = {NULL};
+        const double grid_lat[4] = {0.0, 0.0, 10.0, 10.0};
+        const double grid_lon[4] = {999.0, 10.0, 0.0, 10.0};
+        double plat = 9.0;
+        double plon = 1.0;
+        int ret;
+        long int idx;
+        long int exp_idx = 2;
+
+        sec[3] = sec3;
+        sec3[3] = 14;
+        sec3[4] = 3;
+        sec3[9] = 4;
+
+        lat = (double *) malloc(sizeof(grid_lat));
+        lon = (double *) malloc(sizeof(grid_lon));
+        if (lat == NULL || lon == NULL) {
+            printf("Failed to allocate test coordinate arrays.\n");
+            free(lat);
+            free(lon);
+            return 7;
+        }
+
+        memcpy(lat, grid_lat, sizeof(grid_lat));
+        memcpy(lon, grid_lon, sizeof(grid_lon));
+        scan = 0;
+        nx = 0;
+        ny = 0;
+        output_order = raw;
+        geolocation = internal;
+
+        ret = closest_init(sec);
+        if (ret != 0) {
+            printf("closest_init() returned %d for valid input.\n", ret);
+            free(lat);
+            free(lon);
+            return 7;
+        }
+
+        idx = closest(sec, plat, plon);
+        if (idx != exp_idx) {
+            printf("closest() returned %ld, expected %ld.\n", idx, exp_idx);
+            free(lat);
+            free(lon);
+            return 7;
+        }
+
+        free(lat);
+        free(lon);
+    }
+    printf("Test Case 8: Brute-force closest-point lookup fails. Should return -1.\n");
+    {
+        unsigned char sec3[14] = {0};
+        unsigned char *sec[8] = {NULL};
+        const double grid_lat[4] = {999.0, 999.0, 999.0, 999.0};
+        const double grid_lon[4] = {0.0, 10.0, 20.0, 30.0};
+        double plat = 9.0;
+        double plon = 1.0;
+        int ret;
+        long int idx;
+        long int exp_idx = -1;
+
+        sec[3] = sec3;
+        sec3[3] = 14;
+        sec3[4] = 3;
+        sec3[9] = 4;
+
+        lat = (double *) malloc(sizeof(grid_lat));
+        lon = (double *) malloc(sizeof(grid_lon));
+        if (lat == NULL || lon == NULL) {
+            printf("Failed to allocate test coordinate arrays.\n");
+            free(lat);
+            free(lon);
+            return 8;
+        }
+
+        memcpy(lat, grid_lat, sizeof(grid_lat));
+        memcpy(lon, grid_lon, sizeof(grid_lon));
+        scan = 0;
+        nx = 0;
+        ny = 0;
+        output_order = raw;
+        geolocation = internal;
+
+        ret = closest_init(sec);
+        if (ret != 0) {
+            printf("closest_init() returned %d for valid input.\n", ret);
+            free(lat);
+            free(lon);
+            return 8;
+        }
+
+        idx = closest(sec, plat, plon);
+        if (idx != exp_idx) {
+            printf("closest() returned %ld, expected %ld.\n", idx, exp_idx);
+            free(lat);
+            free(lon);
+            return 8;
         }
 
         free(lat);
