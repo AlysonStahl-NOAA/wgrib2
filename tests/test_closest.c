@@ -364,6 +364,8 @@ main(){
             free(lat);
             free(lon);
             return 5;
+        } else {
+            printf("closest_init() succeeded for valid input.\n");
         }
 
         idx = closest(sec, plat, plon);
