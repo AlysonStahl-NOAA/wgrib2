@@ -315,6 +315,7 @@ main(){
     }
     printf("Test Case 5: Closest-point lookup for Space view grid (Grid Type 90).\n");
     {
+        unsigned char sec1[16] = {0};
         unsigned char sec3[80] = {0};
         unsigned char *sec[8] = {NULL};
         double grid_lat[1] = {0.0};
@@ -325,14 +326,19 @@ main(){
         long int idx;
         long int exp_idx = 0;
 
+        sec[1] = sec1;
         sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
 
         sec3[3] = 80;
         sec3[4] = 3;
         sec3[9] = 1;
         sec3[13] = 90;
         sec3[14] = 6;
-        sec3[34] = 1;
+        sec3[33] = 1;
+        sec3[37] = 1;
         sec3[46] = 0;
         sec3[50] = 232;
         sec3[54] = 232;
