@@ -375,6 +375,8 @@ main(){
         if (setjmp(fatal_err) == 0) {
             mercator2ll(sec, &lat, &lon);
             printf("mercator2ll() failed to trigger fatal_error for lon > 360.\n");
+            if (lat) free(lat);
+            if (lon) free(lon);
             return 7;
         }
     }
@@ -409,6 +411,8 @@ main(){
         if (setjmp(fatal_err) == 0) {
             mercator2ll(sec, &lat, &lon);
             printf("mercator2ll() failed to trigger fatal_error for lon > 360.\n");
+            if (lat) free(lat);
+            if (lon) free(lon);
             return 8;
         }
     }
@@ -443,6 +447,8 @@ main(){
         if (setjmp(fatal_err) == 0) {
             mercator2ll(sec, &lat, &lon);
             printf("mercator2ll() failed to trigger fatal_error for lat < -90.\n");
+            if (lat) free(lat);
+            if (lon) free(lon);
             return 9;
         }
     }
@@ -477,6 +483,8 @@ main(){
         if (setjmp(fatal_err) == 0) {
             mercator2ll(sec, &lat, &lon);
             printf("mercator2ll() failed to trigger fatal_error for lat < -90.\n");
+            if (lat) free(lat);
+            if (lon) free(lon);
             return 10;
         }
     }
@@ -511,6 +519,8 @@ main(){
         if (setjmp(fatal_err) == 0) {
             mercator2ll(sec, &lat, &lon);
             printf("mercator2ll() failed to trigger fatal_error for lat > 90.\n");
+            if (lat) free(lat);
+            if (lon) free(lon);
             return 11;
         }
     }
@@ -546,6 +556,8 @@ main(){
         if (setjmp(fatal_err) == 0) {
             mercator2ll(sec, &lat, &lon);
             printf("mercator2ll() failed to trigger fatal_error for lat > 90.\n");
+            if (lat) free(lat);
+            if (lon) free(lon);
             return 12;
         }
     }
@@ -586,6 +598,8 @@ main(){
         if (setjmp(fatal_err) == 0) {
             mercator2ll(sec, &lat, &lon);
             printf("mercator2ll() failed to trigger fatal_error for inconsistent scan order.\n");
+            if (lat) free(lat);
+            if (lon) free(lon);
             return 13;
         }
     }
@@ -617,6 +631,8 @@ main(){
         if (setjmp(fatal_err) == 0) {
             mercator2ll(sec, &lat, &lon);
             printf("mercator2ll() failed to trigger fatal_error for ambiguous grid definition.\n");
+            if (lat) free(lat);
+            if (lon) free(lon);
             return 14;
         }
     }
@@ -649,6 +665,8 @@ main(){
         if (setjmp(fatal_err) == 0) {
             mercator2ll(sec, &lat, &lon);
             printf("mercator2ll() failed to trigger fatal_error for grid definition decoding failure.\n");
+            if (lat) free(lat);
+            if (lon) free(lon);
             return 15;
         }
     }

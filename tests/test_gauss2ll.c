@@ -303,6 +303,411 @@ main(){
         free(llat);
         free(llon);
     }
+    printf("Test Case 5: Fatal error due to lon1 > 360.0. \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[46] = 0;
+        sec3[49] = 1;
+        sec3[50] = 21;
+        sec3[51] = 117;
+        sec3[52] = 42;
+        sec3[53] = 1;
+        sec3[70] = 1;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for lon > 360.0.\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 5;
+        }
+    }
+    printf("Test Case 6: Fatal error due to lon2 > 360.0. \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[46] = 0;
+        sec3[49] = 1;
+        sec3[59] = 21;
+        sec3[60] = 117;
+        sec3[61] = 42;
+        sec3[62] = 1;
+        sec3[70] = 1;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for lon > 360.0.\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 6;
+        }
+    }
+    printf("Test Case 7: Fatal error due to lat1 < -90.0. \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[46] = 250;
+        sec3[47] = 162;
+        sec3[48] = 181;
+        sec3[49] = 127;
+        sec3[50] = 0;
+        sec3[53] = 1;
+        sec3[70] = 1;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for lat < -90.0.\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 7;
+        }
+    }
+    printf("Test Case 8: Fatal error due to lat2 < -90.0. \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[46] = 0;
+        sec3[49] = 1;
+        sec3[55] = 250;
+        sec3[56] = 162;
+        sec3[57] = 181;
+        sec3[58] = 127;
+        sec3[70] = 1;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for lat < -90.0.\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 8;
+        }
+    }
+    printf("Test Case 9: Fatal error due to lat1 > 90.0. \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[46] = 5;
+        sec3[47] = 93;
+        sec3[48] = 74;
+        sec3[49] = 129;
+        sec3[50] = 0;
+        sec3[53] = 1;
+        sec3[70] = 1;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for lat > 90.0.\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 9;
+        }
+    }
+    printf("Test Case 10: Fatal error due to lat2 > 90.0. \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[46] = 0;
+        sec3[49] = 1;
+        sec3[55] = 5;
+        sec3[56] = 93;
+        sec3[57] = 74;
+        sec3[58] = 129;
+        sec3[70] = 1;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for lat > 90.0.\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 10;
+        }
+    }
+    printf("Test Case 11: Fatal error due to nny == 0. \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[46] = 0;
+        sec3[49] = 1;
+        sec3[50] = 0;
+        sec3[53] = 1;
+        sec3[70] = 1;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for nny == 0.\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 11;
+        }
+    }
+    printf("Test Case 12: Fatal error due to inconsistent scan order. \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 2;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[37] = 2;
+        sec3[46] = 0;
+        sec3[49] = 10;
+        sec3[50] = 0;
+        sec3[53] = 1;
+        sec3[58] = 20;
+        sec3[70] = 1;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for inconsistent scan order.\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 12;
+        }
+    }
+    printf("Test Case 13: Fatal error due to bad grid definition (nny > nlat). \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 3;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[37] = 3;
+        sec3[46] = 0;
+        sec3[49] = 10;
+        sec3[50] = 0;
+        sec3[53] = 1;
+        sec3[58] = 20;
+        sec3[70] = 1;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for bad grid definition (nny > nlat).\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 13;
+        }
+    }
+    printf("Test Case 14: Fatal error due to non-Gaussian latitude (isouth < 0). \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 2;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[37] = 2;
+        sec3[46] = 0;
+        sec3[49] = 10;
+        sec3[50] = 0;
+        sec3[53] = 1;
+        sec3[55] = 3;
+        sec3[56] = 139;
+        sec3[57] = 12;
+        sec3[58] = 184;
+        sec3[70] = 2;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for non-Gaussian latitude.\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 14;
+        }
+    }
+    printf("Test Case 15: Fatal error due to non-Gaussian latitude (inorth < 0). \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 2;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[37] = 2;
+        sec3[46] = 1;
+        sec3[47] = 47;
+        sec3[48] = 71;
+        sec3[49] = 135;
+        sec3[50] = 0;
+        sec3[53] = 1;
+        sec3[55] = 0;
+        sec3[58] = 30;
+        sec3[70] = 2;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for non-Gaussian latitude.\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 15;
+        }
+    }
     printf("SUCCESS!\n");
     return 0;
 }

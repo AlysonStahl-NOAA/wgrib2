@@ -280,6 +280,8 @@ main(){
         if (setjmp(fatal_err) == 0) {
             lambert2ll(sec, &lat, &lon);
             printf("lambert2ll() failed to trigger fatal_error for lon1r < 0.\n");
+            if (lat) free(lat);
+            if (lon) free(lon);
             return 5;
         }
     }
@@ -335,6 +337,8 @@ main(){
         if (setjmp(fatal_err) == 0) {
             lambert2ll(sec, &lat, &lon);
             printf("lambert2ll() failed to trigger fatal_error for stagger problem.\n");
+            if (lat) free(lat);
+            if (lon) free(lon);
             return 6;
         }
     }
