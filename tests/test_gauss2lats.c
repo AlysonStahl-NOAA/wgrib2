@@ -40,11 +40,7 @@ main(){
             printf("gauss2lats() did not return the input array.\n");
             return 1;
         }
-
-        for (unsigned int i = 0; i < nlat; i++) {
-            printf("ylat[%u] = %.15f\n", i, ylat[i]);
-        }
-
+        
         for (unsigned int i = 0; i < nlat; i++) {
             if (fabs(ylat[i] - expected[i]) > TOL) {
                 printf("gauss2lats() returned an unexpected latitude at index %d.\n", i);
