@@ -173,7 +173,7 @@ main(){
         double plon = 1.0;
         int ret;
         long int idx;
-        long int exp_idx = 4;
+        long int exp_idx = 3;
 
         sec[1] = sec1;
         sec[3] = sec3;
