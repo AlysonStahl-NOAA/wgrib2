@@ -234,6 +234,75 @@ main(){
         free(llat);
         free(llon);
     }
+    printf("Test Case 4: Regular Gaussian lat-lon grid with e normalized from 360 degrees.\n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+        unsigned int exp_size = 6;
+        const double expected_lat[6] = {
+            19.875719147440904, 19.875719147440904, 19.875719147440904,
+            59.444408289166775, 59.444408289166775, 59.444408289166775
+        };
+        const double expected_lon[6] = {0.0, 10.0, 20.0, 0.0, 10.0, 20.0};
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 6;
+        sec3[13] = 40;
+        sec3[33] = 3;
+        sec3[37] = 2;
+        sec3[46] = 1;
+        sec3[47] = 47;
+        sec3[48] = 71;
+        sec3[49] = 135;
+        sec3[50] = 21;
+        sec3[51] = 117;
+        sec3[52] = 42;
+        sec3[53] = 0;
+        sec3[55] = 3;
+        sec3[56] = 139;
+        sec3[57] = 12;
+        sec3[58] = 184;
+        sec3[59] = 1;
+        sec3[60] = 49;
+        sec3[61] = 45;
+        sec3[62] = 0;
+        sec3[63] = 0;
+        sec3[64] = 152;
+        sec3[65] = 150;
+        sec3[66] = 128;
+        sec3[70] = 2;
+        sec3[71] = 64;
+
+        if (gauss2ll(sec, &llat, &llon) != 0 || llat == NULL || llon == NULL) {
+            printf("gauss2ll() failed on valid input.\n");
+            free(llat);
+            free(llon);
+            return 4;
+        }
+
+        for (unsigned int i = 0; i < exp_size; i++) {
+            if (fabs(llat[i] - expected_lat[i]) > TOL ||
+                fabs(llon[i] - expected_lon[i]) > TOL) {
+                printf("gauss2ll() produced an unexpected coordinate at index %u.\n", i);
+                free(llat);
+                free(llon);
+                return 4;
+            }
+        }
+
+        free(llat);
+        free(llon);
+    }
     printf("SUCCESS!\n");
     return 0;
 }
