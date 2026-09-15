@@ -542,30 +542,30 @@ main(){
         free(lat);
         free(lon);
     }
-    printf("Test Case 10: Calling closest() without closest_init().\n");
+    printf("Test Case 9: Calling closest() without closest_init(). Should return -1.\n");
     {
         unsigned char sec3[14] = {0};
         unsigned char *sec[8] = {NULL};
-        const double grid_lat[4] = {0.0, 0.0, 10.0, 10.0};
-        const double grid_lon[4] = {0.0, 10.0, 0.0, 10.0};
-        double plat = 9.0;
-        double plon = 1.0;
-        int ret;
+        double grid_lat[1] = {0.0};
+        double grid_lon[1] = {0.0};
+        double plat = 0.0;
+        double plon = 0.0;
         long int idx;
-        long int exp_idx = 2;
+        long int exp_idx = -1;
 
         sec[3] = sec3;
         sec3[3] = 14;
         sec3[4] = 3;
-        sec3[9] = 4;
+        sec3[12] = 0;
+        sec3[13] = 0;
 
-        lat = (double *) malloc(4 * sizeof(double));
-        lon = (double *) malloc(4 * sizeof(double));
+        lat = (double *) malloc(sizeof(grid_lat));
+        lon = (double *) malloc(sizeof(grid_lon));
         if (lat == NULL || lon == NULL) {
             printf("Failed to allocate test coordinate arrays.\n");
             free(lat);
             free(lon);
-            return 1;
+            return 9;
         }
 
         memcpy(lat, grid_lat, sizeof(grid_lat));
@@ -577,8 +577,11 @@ main(){
         geolocation = internal;
 
         idx = closest(sec, plat, plon);
-        printf("closest() returned %ld.\n", idx);
-
+        if (idx != exp_idx) {
+            printf("closest() returned %ld, expected %ld.\n", idx, exp_idx);
+            return 9;
+        }
+        
         free(lat);
         free(lon);
     }
