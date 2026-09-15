@@ -318,13 +318,13 @@ main(){
         unsigned char sec1[16] = {0};
         unsigned char sec3[80] = {0};
         unsigned char *sec[8] = {NULL};
-        double grid_lat[1] = {0.0};
-        double grid_lon[1] = {0.0};
+        double grid_lat[5] = {-90.0, -45.0, 0.0, 45.0, 90.0};
+        double grid_lon[5] = {0.0, 90.0, 180.0, 270.0, 360.0};
         double plat = 0.0;
-        double plon = 0.0;
+        double plon = 1.0;
         int ret;
         long int idx;
-        long int exp_idx = 0;
+        long int exp_idx = 2;
 
         sec[1] = sec1;
         sec[3] = sec3;
@@ -334,10 +334,10 @@ main(){
 
         sec3[3] = 80;
         sec3[4] = 3;
-        sec3[9] = 1;
+        sec3[9] = 5;
         sec3[13] = 90;
         sec3[14] = 6;
-        sec3[33] = 1;
+        sec3[33] = 5;
         sec3[37] = 1;
         sec3[46] = 0;
         sec3[50] = 232;
@@ -359,7 +359,7 @@ main(){
         memcpy(lat, grid_lat, sizeof(grid_lat));
         memcpy(lon, grid_lon, sizeof(grid_lon));
         scan = 64;
-        nx = 1;
+        nx = 5;
         ny = 1;
         output_order = wesn;
         geolocation = internal;
