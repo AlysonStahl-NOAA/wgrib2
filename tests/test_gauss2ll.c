@@ -708,6 +708,48 @@ main(){
             return 15;
         }
     }
+    printf("Test Case 16: Fatal error due to latitude not consistent with ny. \n");
+    {
+        unsigned char sec1[16] = {0};
+        unsigned char sec3[72] = {0};
+        unsigned char *sec[8] = {NULL};
+        double *llat = NULL;
+        double *llon = NULL;
+
+        sec[1] = sec1;
+        sec[3] = sec3;
+
+        sec1[3] = 16;
+        sec1[4] = 1;
+
+        sec3[3] = 72;
+        sec3[4] = 3;
+        sec3[9] = 1;
+        sec3[13] = 40;
+        sec3[33] = 1;
+        sec3[37] = 1;
+        sec3[46] = 1;
+        sec3[47] = 47;
+        sec3[48] = 71;
+        sec3[49] = 135;
+        sec3[50] = 0;
+        sec3[53] = 1;
+        sec3[55] = 3;
+        sec3[56] = 139;
+        sec3[57] = 12;
+        sec3[58] = 184;
+        sec3[70] = 2;
+        sec3[71] = 64;
+
+        if (setjmp(fatal_err) == 0) {
+            gauss2ll(sec, &llat, &llon);
+            printf("gauss2ll() failed to trigger fatal_error for non-Gaussian latitude.\n");
+            if (llat) free(llat);
+            if (llon) free(llon);
+            return 16;
+        }
+    }
     printf("SUCCESS!\n");
     return 0;
 }
+
